@@ -1,0 +1,10 @@
+node_modules/
+.env
+.DS_Store
+npm-debug.log*
+
+# 构建产物
+smart-task-manager.zip
+
+# 预览图（本地留存，不入库）
+preview/
