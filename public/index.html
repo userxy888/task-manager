@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>智能任务管理 · TaskFlow</title>
+  <link
+    rel="icon"
+    href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232f6df6'/><path d='M18 33l9 9 19-19' stroke='white' stroke-width='7' fill='none' stroke-linecap='round'/></svg>"
+  />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">TASK&nbsp;FLOW</p>
+        <h1>智能任务管理</h1>
+        <p class="subtitle">按优先级安排，把注意力留给真正重要的事。</p>
+      </div>
+      <div class="status-chip" id="modeChip" title="数据存储状态">
+        <span class="dot"></span>
+        <span id="modeText">正在连接…</span>
+      </div>
+    </header>
+
+    <main class="card">
+      <form class="add-form" id="addForm" autocomplete="off">
+        <div class="input-wrap">
+          <svg class="icon-plus" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" fill="none" />
+          </svg>
+          <input
+            id="titleInput"
+            class="title-input"
+            type="text"
+            maxlength="200"
+            placeholder="输入任务内容，回车即可添加…"
+            aria-label="任务内容"
+          />
+        </div>
+
+        <div class="select-wrap">
+          <select id="prioritySelect" aria-label="优先级">
+            <option value="high">高优先级</option>
+            <option value="medium" selected>中优先级</option>
+            <option value="low">低优先级</option>
+          </select>
+          <svg class="icon-chevron" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" fill="none" />
+          </svg>
+        </div>
+
+        <button type="submit" class="btn-add" id="addBtn">添加任务</button>
+      </form>
+
+      <p class="form-error" id="formError" role="alert" hidden></p>
+
+      <section class="toolbar">
+        <div class="filters" id="filters" role="tablist" aria-label="按优先级筛选">
+          <button type="button" class="filter is-active" data-priority="" role="tab" aria-selected="true">
+            全部<span class="count" data-count="all">0</span>
+          </button>
+          <button type="button" class="filter" data-priority="high" role="tab" aria-selected="false">
+            高<span class="count" data-count="high">0</span>
+          </button>
+          <button type="button" class="filter" data-priority="medium" role="tab" aria-selected="false">
+            中<span class="count" data-count="medium">0</span>
+          </button>
+          <button type="button" class="filter" data-priority="low" role="tab" aria-selected="false">
+            低<span class="count" data-count="low">0</span>
+          </button>
+        </div>
+        <div class="summary" id="summary">共 0 条 · 已完成 0 条</div>
+      </section>
+
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <ul class="task-list" id="taskList"></ul>
+    </main>
+
+    <footer class="foot">
+      <span>Node.js + Express</span>
+      <span class="sep">·</span>
+      <span>数据存储于 Supabase</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
